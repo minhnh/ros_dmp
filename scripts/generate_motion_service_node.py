@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 import numpy as np
-from ros_dmp import RollDmp
+from ros_dmp.roll_dmp import RollDmp
 from ros_dmp.srv import GenerateMotion, GenerateMotionResponse
 from ros_dmp.msg import CartesianTrajectory
 from nav_msgs.msg import Path

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
-import ros_dmp
+from ros_dmp.learn_dmp import LearnDmp
 
 if __name__ == "__main__":
 
-    learn_dmp_object = ros_dmp.LearnDmp()
+    learn_dmp_object = LearnDmp()
