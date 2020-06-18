@@ -2,10 +2,10 @@ import numpy as np
 import yaml
 import os
 import pydmps
-import tf
 from geometry_msgs.msg import Pose, PoseStamped
 from nav_msgs.msg import Path
 from ros_dmp.msg import CartesianTrajectory, CartesianState
+import ros_dmp.transformations as tf
 
 
 class RollDmp():
@@ -35,7 +35,7 @@ class RollDmp():
         path = Path()
         path.header.frame_id = self.target_frame
         for i in range(pos.shape[0]):
-            x, y, z, w = tf.transformations.quaternion_from_euler(pos[i, 3], pos[i, 4], pos[i, 5])
+            x, y, z, w = tf.quaternion_from_euler(pos[i, 3], pos[i, 4], pos[i, 5])
             pose = Pose()
             pose.position.x = pos[i, 0]
             pose.position.y = pos[i, 1]

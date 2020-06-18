@@ -7,7 +7,7 @@ import rospy
 import std_msgs
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
-import tf
+import ros_dmp.transformations as tf
 import numpy as np
 from ros_dmp.srv import *
 import sys
@@ -38,8 +38,8 @@ class LearnDmp:
         trajectory = np.zeros((6, len(req.poses)))
         rospy.loginfo("Learning motion primitive " + req.dmp_name)
         for i in range(len(req.poses)):
-            rpy = tf.transformations.euler_from_quaternion([req.poses[i].orientation.x, req.poses[i].orientation.y,
-                                                                    req.poses[i].orientation.z, req.poses[i].orientation.w])
+            rpy = tf.euler_from_quaternion([req.poses[i].orientation.x, req.poses[i].orientation.y,
+                                            req.poses[i].orientation.z, req.poses[i].orientation.w])
             trajectory[:,i] = [req.poses[i].position.x, req.poses[i].position.y, req.poses[i].position.z,
                             rpy[0], rpy[1], rpy[2]]
         self.learn_dmp(trajectory, req.output_weight_file_name, req.n_dmps, req.n_bfs)
