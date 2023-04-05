@@ -72,7 +72,7 @@ class RollDmp():
     def load_weights(self, file_name):
 
         with open(file_name) as f:
-            loadeddict = yaml.load(f)
+            loadeddict = yaml.safe_load(f)
         x = loadeddict.get('x')
         y = loadeddict.get('y')
         z = loadeddict.get('z')
